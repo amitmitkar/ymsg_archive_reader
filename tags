@@ -1,0 +1,25 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+SRCS	Makefile	/^SRCS:=ymsg_parse.c ymsg_hdr.h$/;"	m
+__YMSG_HDR_H__	ymsg_hdr.h	3;"	d
+decode_message	ymsg_parse.c	/^void decode_message(char *user, struct ymsg *pmsg)$/;"	f
+dump_msg	ymsg_parse.c	/^void dump_msg(FILE *fd, struct ymsg *pmsg, char *user)$/;"	f
+free_msg	ymsg_parse.c	/^int free_msg(struct ymsg *pmsg)$/;"	f
+hdr	ymsg_hdr.h	/^	struct 	ymsg_hdr hdr;$/;"	m	struct:ymsg	typeref:struct:ymsg::ymsg_hdr
+len	ymsg_hdr.h	/^	uint32_t len;$/;"	m	struct:ymsg_hdr
+main	ymsg_parse.c	/^int main(int argc, char **argv)$/;"	f
+msgend	ymsg_hdr.h	/^	uint32_t	 msgend;$/;"	m	struct:ymsg
+msgoffset	ymsg_hdr.h	/^	uint64_t 	 msgoffset;$/;"	m	struct:ymsg
+msgtype	ymsg_hdr.h	/^	uint32_t msgtype;$/;"	m	struct:ymsg_hdr
+pmsg	ymsg_hdr.h	/^	char 		*pmsg;$/;"	m	struct:ymsg
+print_msg	ymsg_parse.c	/^void print_msg(char *msg)$/;"	f
+read_next_msg	ymsg_parse.c	/^int read_next_msg(int fd, struct ymsg *pmsg)$/;"	f
+recvd	ymsg_hdr.h	/^	uint32_t recvd;$/;"	m	struct:ymsg_hdr
+unixdate	ymsg_hdr.h	/^	uint32_t unixdate;$/;"	m	struct:ymsg_hdr
+usage	ymsg_parse.c	/^void usage(void)$/;"	f
+ymsg	ymsg_hdr.h	/^struct ymsg {$/;"	s
+ymsg_hdr	ymsg_hdr.h	/^struct ymsg_hdr {$/;"	s
