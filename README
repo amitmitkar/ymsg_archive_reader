@@ -1,4 +1,27 @@
 Simple utility to read yahoo messenger archive files.
 
-It takes the yahoo account username ( sans the @yahoo.com ) and the name of an archive file.
+It takes your yahoo account username ( sans the @yahoo.com ) and the name of an archive file.
 As of now this only parses ASCII text; emoticons, unicode text, files etc are not handled.
+Any unprintable characters will be replaced by a ^
+
+To Build : Just run make.
+
+USAGE:
+
+ymsg_parse username msgfile
+
+eg:
+$ ./ymsg_parse my_fakeuser /home/my_fakeuser/old_archives/Archive/Messages/my_fakefriend/20070724-my_fakeuser.dat
+
+  Tue Jul 24 13:38:59 2007:my_fakeuser                   :kahi nahi ... :( .... kaam kartoy ga ... 
+  Tue Jul 24 13:39:08 2007:my_fakeuser                   :have this goddamn ppc box ... need to get it to boot 
+  Tue Jul 24 13:39:15 2007:my_fakeuser                   :i've managed to brick it ... 
+  Tue Jul 24 13:40:47 2007:==>                           :hmm.. i'm missing working :-? .. 
+  Tue Jul 24 13:42:43 2007:==>                           :anyway.. tujha chalude.. mi sign out karte.. cya tomorrow.. 
+  Tue Jul 24 13:43:25 2007:my_fakeuser                   :sorry dudette .... ithe jara gondhal chalu aahe 
+  Tue Jul 24 13:43:30 2007:my_fakeuser                   :ok tu jhop :) 
+  Tue Jul 24 13:43:35 2007:my_fakeuser                   :bolu nantar 
+  Tue Jul 24 13:43:42 2007:my_fakeuser                   :gnite ... sweet dreams :) 
+  Tue Jul 24 13:44:25 2007:==>                           :
+  Tue Jul 24 13:44:25 2007:==>                           ::) gn.. sd to you too.. if you do get to sleep 
+  Tue Jul 24 13:44:43 2007:my_fakeuser                   :i will 
