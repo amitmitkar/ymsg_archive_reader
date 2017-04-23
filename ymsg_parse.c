@@ -42,7 +42,7 @@ int read_next_msg(int fd, struct ymsg *pmsg)
 
 	pmsg->msgoffset = lseek(fd, 0, SEEK_CUR);
 
-	pmsg->pmsg = malloc(pmsg->hdr.len);
+	pmsg->pmsg = calloc(pmsg->hdr.len + 1, 1);
 	if (!pmsg->pmsg) {
 		printf("Failed to allocate memory for message of len %ld\n", pmsg->hdr.len);
 		return -1;
@@ -52,7 +52,6 @@ int read_next_msg(int fd, struct ymsg *pmsg)
 		printf("Failed to read msg @ offset %llu\n", lseek(fd, 0, SEEK_CUR));
 		return -1;
 	}
-	
 
 	if ( sizeof(uint32_t) != read(fd, &(pmsg->msgend), sizeof(uint32_t)) ) {
 		printf("Failed to read msg terminator @ offset %llu\n", lseek(fd, 0, SEEK_CUR));
@@ -89,10 +88,15 @@ void decode_message(char *user, struct ymsg *pmsg)
 void dump_msg(FILE *fd, struct ymsg *pmsg, char *user)
 {
 	char tbuff[50];
-	fprintf(fd, "%26s", ctime_r((const time_t*)&(pmsg->hdr.unixdate), tbuff));
-	fprintf(fd, " %4x ", pmsg->hdr.msgtype);
-	fprintf(fd, " %20d ", pmsg->hdr.len);
-	fprintf(fd, " %s ", pmsg->hdr.recvd ? "==>":"<==");
+	time_t ts = pmsg->hdr.unixdate;
+
+
+	ctime_r((const time_t*)(&ts), tbuff);
+	strchr(tbuff, '\n') && (*(strchr(tbuff, '\n')) = '\0');
+	fprintf(fd, "%26s:", tbuff);
+	//fprintf(fd, " %4x ", pmsg->hdr.msgtype);
+	//fprintf(fd, " %20d ", pmsg->hdr.len);
+	fprintf(fd, "%-30s:", pmsg->hdr.recvd ? "==>":user);
 	if (user && (pmsg->hdr.msgtype == 0x6)) {
 		decode_message(user, pmsg);
 		print_msg(pmsg->pmsg);
@@ -105,7 +109,7 @@ int main(int argc, char **argv)
 	int	 	fd = -1;
 	char 		*user = NULL;
 	char		*fname = NULL;
-	struct ymsg	 msg, prev_msg;
+	struct ymsg	 msg;
 
 	if (argc != 3) {
 		usage();
@@ -124,7 +128,7 @@ int main(int argc, char **argv)
 
 	while (!read_next_msg(fd, &msg)) {
 		dump_msg(stdout, &msg, user);
-		memcpy(&prev_msg, &msg, 
+		free_msg(&msg);
 	}
 
 
