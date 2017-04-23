@@ -1,0 +1,4 @@
+Simple utility to read yahoo messenger archive files.
+
+It takes the yahoo account username ( sans the @yahoo.com ) and the name of an archive file.
+As of now this only parses ASCII text; emoticons, unicode text, files etc are not handled.
